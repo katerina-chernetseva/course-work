@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Caffee</string>
+    <string name="app_in_name">Добро пожаловать!</string>
+    <string name="text_bottom">Войдите в свою учётную запись</string>
+    <string name="btnSignIn">Войти</string>
+    <string name="btnRegister">Зарегистрироваться</string>
+</resources>
