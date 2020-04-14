@@ -12,6 +12,90 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:orientation="vertical">
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/FIOField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="ФИО"
+            android:inputType="textPersonName"
+            android:text=""
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="#807D85"
+            android:textSize="20sp"
+            app:met_floatingLabel="highlight"
+            app:met_singleLineEllipsis="true"/>
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/AdressField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Адрес"
+            android:inputType="text"
+            android:text=""
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="#807D85"
+            android:textSize="20sp"
+
+            app:met_floatingLabel="highlight"
+            app:met_singleLineEllipsis="true"/>
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/TelephoneField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Телефон"
+            android:inputType="phone"
+            android:text=""
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="#77767A"
+            android:textSize="20sp"
+            app:met_floatingLabel="highlight"
+            app:met_singleLineEllipsis="true"
+            app:met_minCharacters="11"
+            app:met_maxCharacters="11"
+            />
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/BirthDateField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Дата рождения"
+            android:inputType="date"
+            android:text=""
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="#807D85"
+            android:textSize="20sp"
+            app:met_floatingLabel="highlight"
+            app:met_singleLineEllipsis="true"/>
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/emailField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:text=""
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="#807D85"
+            android:textSize="20sp"
+            app:met_floatingLabel="highlight"
+            app:met_singleLineEllipsis="true"/>
+
+        <com.rengwuxian.materialedittext.MaterialEditText
+            android:id="@+id/PasswordField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Пароль"
+            android:inputType="textPassword"
+            android:text=""
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="#807D85"
+            android:textSize="20sp"
+            app:met_floatingLabel="highlight"
+            app:met_singleLineEllipsis="true"
+            app:met_minCharacters="4"/>
+
     </LinearLayout>
     
 </androidx.cardview.widget.CardView>
