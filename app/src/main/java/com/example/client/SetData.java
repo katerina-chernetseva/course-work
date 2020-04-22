@@ -12,7 +12,7 @@ public class SetData {
     private String ConnectionResult;
     private Boolean isSuccess=false;
 
-    public void setRegisterData(Client client){
+    void setRegisterData(Client client){
 
         try {
             ConnectionHelper connectionHelper = new ConnectionHelper();
@@ -37,5 +37,31 @@ public class SetData {
             isSuccess=false;
             ConnectionResult=e.getMessage();
         }
+    }
+
+    ResultSet getLoginData(Client client){
+        ResultSet resultSet = null;
+        try {
+
+            ConnectionHelper connectionHelper = new ConnectionHelper();
+            Connection connection = connectionHelper.connection();
+            if (connection ==null){
+                ConnectionResult="Check your internet access!";
+            }
+            else{
+                String query = "SELECT * FROM " + Const.CLIENT_TABLE + " WHERE "  + Const.CLIENT_EMAIL + " = '"  + client.getEmail() +
+                        "' AND " + Const.CLIENT_PASSWORD + "='" + client.getPassword() + "'";
+                Statement stmt = connection.createStatement();
+                resultSet=stmt.executeQuery(query);
+                ConnectionResult="Successful";
+                isSuccess=true;
+            }
+
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+            isSuccess=false;
+            ConnectionResult=e.getMessage();
+        }
+        return resultSet;
     }
 }

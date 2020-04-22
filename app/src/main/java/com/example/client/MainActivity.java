@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -17,6 +18,8 @@ import com.google.android.material.snackbar.Snackbar;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
@@ -42,6 +45,70 @@ public class MainActivity extends AppCompatActivity {
                 showRegisterWindow();
             }
         });
+        btnSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showSignInWindow();
+            }
+        });
+    }
+
+    private void showSignInWindow() {
+        final SetData setData = new SetData();
+        AlertDialog.Builder dialog = new AlertDialog.Builder(this);
+        dialog.setTitle("Войти");
+        dialog.setMessage("Введите все данные для входа");
+
+        LayoutInflater inflater = LayoutInflater.from(this);
+        @SuppressLint("InflateParams") View signInWindow = inflater.inflate(R.layout.signin_window, null);
+        dialog.setView(signInWindow);
+
+        final MaterialEditText email = signInWindow.findViewById(R.id.emailField);
+        final MaterialEditText password = signInWindow.findViewById(R.id.PasswordField);
+
+        dialog.setNegativeButton("Отменить", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int which) {
+                dialogInterface.dismiss();
+            }
+        });
+
+        dialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int which) {
+                if (TextUtils.isEmpty(Objects.requireNonNull(email.getText()).toString())){
+                    Snackbar.make(root, "Введите ваш e-mail", Snackbar.LENGTH_SHORT).show();
+                    return;
+                }
+                if (TextUtils.isEmpty(Objects.requireNonNull(password.getText()).toString())){
+                    Snackbar.make(root, "Введите ваш пароль", Snackbar.LENGTH_SHORT).show();
+                    return;
+                }
+
+                Client client = new Client();
+                client.setEmail(email.getText().toString());
+                client.setPassword(password.getText().toString());
+
+                int c = 0;
+                try {
+                    ResultSet resultSet = setData.getLoginData(client);
+                    while (resultSet.next()) {
+                        c++;
+                    }
+                } catch (SQLException e) {
+                    e.printStackTrace(); }
+                if (c>=1) {
+                    startActivity(new Intent(MainActivity.this, MapActivity.class));
+                    finish();
+                }
+                else {
+                    Snackbar.make(root, "Ошибка авторизации", Snackbar.LENGTH_SHORT).show();
+                    return;
+                }
+            }
+        });
+
+        dialog.show();
     }
 
     private void showRegisterWindow() {
@@ -105,6 +172,7 @@ public class MainActivity extends AppCompatActivity {
                 client.setPassword(password.getText().toString());
 
                 setData.setRegisterData(client);
+                Snackbar.make(root, "Регистрация прошла успешно", Snackbar.LENGTH_SHORT).show();
             }
         });
 
