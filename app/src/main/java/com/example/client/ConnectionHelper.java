@@ -11,10 +11,11 @@ public class ConnectionHelper {
     String IP, DB, DBUserName, DBPassword;
     @SuppressLint("NewApi")
     public Connection connection() throws ClassNotFoundException {
-        IP="";
-        DB="";
-        DBUserName="";
-        DBPassword="";
+        //IP="192.168.100.5\\KATE";
+        IP="10.0.2.2";
+        DB="Кафе";
+        DBUserName="Katerina";
+        DBPassword="kate_3108";
 
         StrictMode.ThreadPolicy policy=new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
